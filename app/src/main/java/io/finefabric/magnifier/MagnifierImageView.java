@@ -35,8 +35,8 @@ public class MagnifierImageView extends AppCompatImageView {
     private float touchPosY = 0;
     private int marginTopDp = 0;
     private int marginLeftDp = 0;
-    private float circleCenterPosX = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, CIRCLE_RADIUS_DP + marginTopDp, getResources().getDisplayMetrics());
-    private float circleCenterPosY = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, CIRCLE_RADIUS_DP + marginLeftDp, getResources().getDisplayMetrics());
+    private float circleCenterPosX;
+    private float circleCenterPosY;
     private float circleRadius;
 
     public MagnifierImageView(Context context) {
@@ -46,7 +46,7 @@ public class MagnifierImageView extends AppCompatImageView {
     public MagnifierImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
-        circleRadius = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, CIRCLE_RADIUS_DP, getResources().getDisplayMetrics());
+        circleRadius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, CIRCLE_RADIUS_DP, getResources().getDisplayMetrics());
     }
 
     private void init() {
@@ -55,6 +55,7 @@ public class MagnifierImageView extends AppCompatImageView {
         strokePaint.setStyle(Paint.Style.STROKE);
         strokePaint.setColor(Color.WHITE);
         strokePaint.setAlpha(180);
+        setMargins(0, 0);
     }
 
 
@@ -116,6 +117,8 @@ public class MagnifierImageView extends AppCompatImageView {
     public void setMargins(int marginLeftDp, int marginTopDp) {
         this.marginLeftDp = marginLeftDp;
         this.marginTopDp = marginTopDp;
+        circleCenterPosX = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, CIRCLE_RADIUS_DP + this.marginTopDp, getResources().getDisplayMetrics());
+        circleCenterPosY = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, CIRCLE_RADIUS_DP + this.marginLeftDp, getResources().getDisplayMetrics());
     }
 
     public void setMagnifyFactor(int magnifyBy) {

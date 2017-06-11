@@ -18,7 +18,8 @@ public class MagnifierActivity extends AppCompatActivity {
 
         MagnifierImageView iv = (MagnifierImageView) findViewById(R.id.i_v);
         iv.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.sample));
-
+        iv.setMargins(100,60);
+        iv.setMagnifyFactor(3);
     }
 
     @Override
